@@ -1,121 +1,147 @@
-//Hombres: [66 + (13,7 × peso en kg)] + [(5 × altura en cm) - (6,8 × edad)] × Factor actividad.
-// Mujeres: [65 + (9,6 × peso en kg)] + [(1,8 × altura en cm) - (4,7 × edad)] × Factor actividad.
-alert("Calculadora de calorias");
-let opcion = parseInt(prompt("Selecciona un genero:\n 1. Hombre\n 2. Mujer"));
-switch (opcion) {
-  case 1:
-    let num;
-    let actv = parseInt(
-      prompt(
-        "Indique su nivel de actividad fisica:\n 1. Persona sedentaria\n 2. Poca actividad física (ejercicio de 1 a 3 veces por semana)\n 3. Actividad moderada (ejercicio de 3 a 5 veces por semana)\n 4. Actividad intensa (ejercicio de 6 a 7 veces por semana)\n 5. Atleta profesional (entrenamientos de más de 4 horas diarias) "
-      )
-    );
-    switch (actv) {
-      case 1:
-        num = 1.2;
-        break;
-      case 2:
-        num = 1.375;
-        break;
-      case 3:
-        num = 1.55;
-        break;
-      case 4:
-        num = 1.725;
-        break;
-      case 5:
-        num = 1.9;
-        break;
-      default:
-        alert("Opción inválida por favor ingrese una opción correcta");
-        break;
-    }
-    function sumarH(primerNumero, segundoNumero, tercerNumero) {
-      resultadoH =
-        (66 + (13.7 * primerNumero)) + (5 * segundoNumero) - (6.8 * tercerNumero);
-    }
+class Empleado {
+  constructor(nombre, peso, edad) {
+    this.nombre = nombre;
+    this.peso = peso;
+    this.edad = edad;
 
-    let num1 = parseInt(prompt("Ingrese su peso"));
-    let num2 = parseInt(prompt("Ingrese un altura en cm"));
-    let num3 = parseInt(prompt("Ingrese su edad"));
-    sumarH(num1, num2, num3);
+  }
 
-    let resultadoFinal = parseInt(
-      prompt(
-        "Indique si quiere ganar peso o perder peso:\n 1. Ganar Peso\n 2. Perder peso"
-      )
-    );
-    let valorFinalHSuma = (resultadoH * num) + 300;
-    let valorFinalHResta = (resultadoH * num) - 300;
-    switch (resultadoFinal) {
-      case 1:
-        alert("Las calorias que deberia consumir son " + valorFinalHSuma.toFixed());
-        break;
-      case 2:
-        alert("Las calorias que deberia consumir son " + valorFinalHResta.toFixed());
-        break;
-      default:
-        alert("Opción inválida por favor ingrese una opción correcta");
-        break;
-    }
-    break;
-  case 2:
-    let numM;
-    let actv1 = parseInt(
-      prompt(
-        "Indique su nivel de actividad fisica:\n 1. Persona sedentaria\n 2. Poca actividad física (ejercicio de 1 a 3 veces por semana)\n 3. Actividad moderada (ejercicio de 3 a 5 veces por semana)\n 4. Actividad intensa (ejercicio de 6 a 7 veces por semana)\n 5. Atleta profesional (entrenamientos de más de 4 horas diarias). "
-      )
-    );
-    switch (actv1) {
-      case 1:
-        numM = 1.2;
-        break;
-      case 2:
-        numM = 1.375;
-        break;
-      case 3:
-        numM = 1.55;
-        break;
-      case 4:
-        numM = 1.725;
-        break;
-      case 5:
-        numM = 1.9;
-        break;
-      default:
-        alert("Opción inválida por favor ingrese una opción correcta");
-        break;
-    }
-    function sumarM(primerNumero, segundoNumero, tercerNumero) {
-      resultado =
-        (65 + (9.6 * primerNumero)) + (1.8 * segundoNumero) - (4.7 * tercerNumero);
-    }
+  cambiarNombre(nombre) {
+    this.nombre = nombre;
+    alert("EL nombre a sido cambiado con éxito");
+  }
 
-    let num1M = parseInt(prompt("Ingrese su peso"));
-    let num2M = parseInt(prompt("Ingrese un altura en cm"));
-    let num3M = parseInt(prompt("Ingrese su edad"));
-    sumarM(num1M, num2M, num3M);
-
-    resultadoFinalM = parseInt(
-      prompt(
-        "Indique si quiere ganar peso o perder peso:\n 1. Ganar Peso\n 2. Perder peso"
-      )
-    );
-    let valorFinalMSuma = (resultado * numM) + 300;
-    let valorFinalMResta = (resultado * numM) - 300;
-    switch (resultadoFinalM) {
-      case 1:
-        alert("Las calorias que deberia consumir son " + valorFinalMSuma.toFixed());
-        break;
-      case 2:
-        alert("Las calorias que deberia consumir son " + valorFinalMResta.toFixed());
-        break;
-      default:
-        alert("Opción inválida por favor ingrese una opción correcta");
-        break;
+  cambiarEdad(edad) {
+    if (isNaN(edad)) {
+      return alert("La edad debe ser un valor numérico");
     }
-    break;
-  default:
-    alert("Opción inválida por favor ingrese una opción correcta");
-    break;
+    this.edad = edad;
+    alert("La edad a sido cambiada con éxito");
+  }
+  cambiarPeso(peso) {
+    if (isNaN(peso)) {
+      return alert("La peso debe ser un valor numérico");
+    }
+    this.peso = peso;
+    alert("La peso sido cambiada con éxito");
+  }
 }
+
+let empleados = [
+  new Empleado("Mateo", 52, 22),
+  new Empleado("Jaque", 66, 32),
+];
+const mostrarEmpleados = (empleados) => {
+  empleados.forEach( empleado => console.log(empleado));
+};
+
+
+
+mostrarEmpleados(empleados);
+
+
+
+
+const agregarEmpleado = () => {
+
+  let nombre = prompt("Ingrese el nombre del empleado");
+  let peso = prompt("Ingrese el peso del empleado");
+  let edad = parseInt(prompt("Ingrese la edad del empleado"));
+
+
+  let empleado = new Empleado(nombre, edad, peso);
+
+
+  empleados.push(empleado);
+
+
+  mostrarEmpleados(empleados);
+};
+
+
+const eliminarEmpleado = () => {
+  
+  const empleadoBuscado = empleadoExiste()
+  
+  if(!empleadoBuscado) return
+
+  const confirmacion = confirm(`Estas seguro que deseas eliminar el empleado ${empleadoBuscado.nombre} ?`)
+
+  if(confirmacion) {
+    empleados = empleados.filter( empleado => empleado.nombre.toLowerCase() !== empleadoBuscado.nombre.toLowerCase()); 
+    mostrarEmpleados(empleados);
+  } else {
+    alert("Eliminación cancelada")
+  }
+  
+};
+
+const editarEmpleado = () => {
+   
+  const empleadoBuscado = empleadoExiste()
+  
+  if(!empleadoBuscado) return
+
+  alert("Menú editar empleado:\n1 - Editar nombre\n2 - Editar peso\n3 - Editar edad");
+
+  let opcion = parseInt(prompt("Ingrese una opción para editar"));
+
+  switch (opcion) {
+    case 1:
+      let nombre = prompt("Ingrese el nombre del empleado");
+      empleadoBuscado.cambiarNombre(nombre);
+      break;
+    case 2:
+      let peso = parseInt(prompt("Ingrese el peso del empleado"));
+      empleadoBuscado.cambiarPeso(peso);
+      break;
+    case 3:
+      let edad = parseInt(prompt("Ingrese la edad del empleado"));
+      empleadoBuscado.cambiarEdad(edad);
+      break;
+    default:
+      alert("Ingrese una opción correcta");
+  }
+
+  mostrarEmpleados(empleados);
+}
+const empleadoExiste = () => {
+
+  let nombreEmpleado = prompt("Ingrese el nombre del empleado");
+
+  let indice = empleados.findIndex(
+    (empleado) => empleado.nombre.toLowerCase() === nombreEmpleado.toLowerCase()
+  );
+
+  if (indice === -1) {
+
+    return alert(`El empleado ${nombreEmpleado} no existe`);
+  }
+
+  return empleados[indice];
+};
+
+let encendido = true; 
+
+while (encendido) {
+  alert("Menú principal:\n1 - Agregar un empleado\n2 - Eliminar un empleado\n3 - Modificar empleado\n4 - Apagar");
+  let opcion = parseInt(prompt("Ingrese una opción"));
+  switch (opcion) {
+    case 1:
+      agregarEmpleado();
+      break;
+    case 2:
+      eliminarEmpleado();
+      break;
+    case 3:
+      editarEmpleado();
+      break;
+    case 4:
+      encendido = false;
+      break;
+    default:
+      alert("Inserte una opción correcta");
+  }
+}
+
+alert("Gracias vuelva pronto");
